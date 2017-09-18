@@ -1,0 +1,50 @@
+.wrapper {
+  min-width: 400px;
+  width: 500px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.example-desc {
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.example {
+  font-family: monospace;
+  padding: 0 20px;
+}
+
+li {
+  list-style: none;
+}
+
+.hash {
+  display: inline-block;
+  text-decoration: none;
+  color: grey;
+
+  transform: scale(0.75);
+
+  transition: transform 0.5s, color 0.5s;
+}
+
+.hash:hover {
+  color: #101010;
+
+  transform: scale(1);
+}
+
+.refresh {
+  display: inline-block;
+  text-decoration: none;
+  color: grey;
+
+  transition: transform 0.5s, color 0.5s;
+}
+
+.refresh:hover {
+  color: #101010;
+
+  transform: rotate(45deg);
+}
