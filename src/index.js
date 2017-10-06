@@ -1,14 +1,7 @@
 /**
  * The Augumented Multiset lib provides methods to deal with special type of multiset.
  * A multiset itself is represented by ordinary JS array.
- // * Those vectors could help to linearize nested loops
- // * (especially it's helpful when an amount of subsidiaries is not specified beforehand).
- // * To use this library features you have to type something like 'nAry(base)(length).someMethod(parameters)'
- // *
- // * @param {number} base - The base (or radix or arity in another words) of vector.
- // * @param {number} length - Amount of digits of vector.
  */
-
 
 const sum = u => v => [...u, ...v];
 const sumEach = U => U.reduce(($, u) => sum($)(u));

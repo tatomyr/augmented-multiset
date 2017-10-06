@@ -1,48 +1,16 @@
-# The 'Multi' Library
+# The 'Augmented Multiset' Library
 
-<!-- The `nAry(base)(length)` provides a bunch of properties and methods to interact with (base)-ary (length)-large numbers or vectors (actually represented by JavaScript arrays).
+The library provides functions to deal with multisets of numbers, which in JavaScript are represented by arrays.
 
-### Installation
+These functions are regular multiset operators like multiset sum "⊎" (represented by `sum`).
 
-* Include this file directly in `html` file as script: `lib/n-ary.babel.js`
+However, some functions are specific for this particular library. E.g. `product`, which has nothing to do with both intersection nor scalar multiplication. It rather corresponds to a cartesian product, but with an operation, applied on inner tuple (in this case it's a plain sum "+"). Let's call it a 'flat cartesian product'.
 
-* Install the package via `npm` `$ npm i -S n-ary` (??) and import as ES6 module:
-```javascript
-import nAry from 'n-ary'
-```
+# Functions Definition
 
-### Properties
-
-* `nAry(base)(length).base` simply returns the base (arity) of a vector
-
-* `nAry(base)(length).length` simply returns the count of digits in a number
-
-* `nAry(base)(length).range` returns the maximum value each digit of (base)-ary number can reach (range = (base) - 1)
-
-* `nAry(base)(length).zero` returns a zero-filled vector with specified (length)
-
-* `nAry(base)(length).last` returns a (range)-filled vector with specified (length)
-
-### Methods
-
-* `nAry(base)(length).random()` returns random (length)-large vector, where each cell represents an appropriate digit of (base)-ary number
-
-* `nAry(base)([length]).inc(vector)` returns value next to the (vector). Simply, it's just an incrementation of (base)-ary number represented by (vector). If the `length` parameter isn't specified returns an empty array when trying to increment the `last` vector. Otherwise, returns `zero` vector.
-
-* `nAry(base)(length).all()` returns all unique variants of (length)-large (base)-ary vector realizations
-
-* `nAry(base)(length).verge()` returns only the (base)-ary verge of the (length)-dimension table
-
-* `nAry(base)(length).randomSet(count)` returns a (count)-large set of random (base)-ary (length)-large vectors
-
-* `nAry(base)([length]).index(vector)` coerces (base)-ary number represented by (vector) to the regular decimal number
-
-* `nAry(base)(length).fromDecimal(value)` coerces value as a base-10 number to (base)-ary (length)-large vector
-
-* `nAry(base)([length]).sumOfDigits(vector)` returns sum of all digits of (vector)
-
-* `nAry(base)(length).sumEquals(value)` returns all variants of (base)-ary (length)-large vectors with specified sum of digits
-
-### Examples
-
-Find use samples [here](https://tatomyr.github.io/n-ary) -->
+* `sum(a)(b)` - returns a multiset sum of `a` and `b` multisets provided. The result's cardinality (array length) is `|a ⊎ b| = |a| + |b|`
+* `sumEach(A)` - returns a multiset sum of each multisets contained in `A` array.
+* `product(a)(b)` - returns a 'flat cartesian product', which means a multiset of all ordered pairs of items of multisets `a` and `b` plain sum: `{a[i] + b[j] | ∀i, j}`. E.g. `[a0, a1] ⋈ [b0, b1, b2] = [a0 + b0, a0 + b1, a0 + b2, a1 + b0, a1 + b1, a1 + b2]`. The results cardinality equals to product of multisets provided cardinalities: `|a ⋈ b| = |a| * |b|`
+* `productEach(A)` - returns a 'flat cartesian product' of each multisets contained in `A` array
+* ...
+* `reduceByEdges(a)(n)` - returns a tuple of `n` elements, uniformly taken from sorted `a` multiset. E.g., `reduceByEdges([a0, a1, a2, a3, a4])(3) = [a0, a2, a4]`. The purpose of this function is to reduce a length of incoming multiset without significant loosing of data
