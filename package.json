@@ -19,7 +19,6 @@
   "keywords": [
     "multiset",
     "combinatorics",
-    "permutations",
     "product"
   ],
   "author": "tatomyr",
@@ -39,6 +38,5 @@
     "mocha": "^3.4.2",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"
-  },
-  "dependencies": {}
+  }
 }

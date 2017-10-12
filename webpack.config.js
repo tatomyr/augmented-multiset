@@ -8,8 +8,10 @@ module.exports = {
     path: path.resolve(__dirname, 'lib'),
     // publicPath: '/assets/',
     filename: 'index.babel.js',
-    // This part is dedicated to create a proper module:
-    library: 'augmented-multiset',
+    // This part is dedicated to create a proper module.
+    // E. g., when you import the library in a browser, this name will stand for
+    // a name of imported module.
+    library: 'ams',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

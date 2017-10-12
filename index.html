@@ -9,7 +9,7 @@
     </script>
   </head>
   <body>
-    <div class="wrapper">
+    <!-- <div class="wrapper">
       <h1><a href="" class="refresh">↻</a> Home</h1>
 
       <div id="vm" class="">
@@ -42,49 +42,150 @@
 
 
       </div>
-    </div>
+    </div> -->
+
+    <div id="chart-container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
 
 
     <script>
-      const query = location.search.slice(1).split('&').reduce((prev, item) =>
-        // ({ ...prev, item.split('=')[0]: item.split('=')[1] })
-        Object.assign(prev, { [item.split('=')[0]]: +item.split('=')[1] }),
-        {}
-      );
-      console.log(location.search,query);
+    console.log(ams);
 
-// !!!
-try {
-      const random = nAry(query.base)(query.length).random();
+    // u = ams.sort([1, 7, 12, 6, 24, 20, 10, 25, 44, 4, 4, 11])
+    // v = ams.sort([12, 15, 41, 2, 5, 4, 2])
+    u = ams.sort(Array(20).fill().map(() => Math.round(Math.random() * 100)))
+    v = ams.sort(Array(10).fill().map(() => Math.round(Math.random() * 100)))
 
-      var vm = new Vue({
-        el: '#vm',
-        data: {
-          base: query.base,
-          length: query.length,
-          zero: nAry(query.base)(query.length).zero,
-          last: nAry(query.base)(query.length).last,
-          random,
-          inc: nAry(query.base)().inc(random),
-          all: nAry(query.base)(query.length).all(),
-          verge: nAry(query.base)(query.length).verge(),
-          randomSet: nAry(query.base)(query.length).randomSet(5),
-          index: nAry(query.base)().index(random),
-          fromDecimal: nAry(query.base)(query.length).fromDecimal(7),
-          sumOfDigits: nAry(query.base)().sumOfDigits(random),
-          sumEquals: nAry(query.base)(query.length).sumEquals(3),
+    n = 5
+
+    pure = ams.sort(ams.product(u)(v))
+    _i_ = ams.sort(  ams.product (ams.reduceByEdges(u)(n)) (ams.reduceByEdges(v)(n))  )
+    // _ii_ = ams.reduceByEdges(pure)(n*n)
+    // _ii_ = ams.sort(  ams.product (ams.reduceByAvg(u)(n)) (ams.reduceByAvg(v)(n))  )
+    _ii_ = ams.sort(  ams.product (ams._reduceByAvg_(u)(n)) (ams._reduceByAvg_(v)(n))  )
+    console.log(u,v,pure, _i_, _ii_);
+
+    Highcharts.chart('chart-container', {
+      chart: {
+        type: 'scatter',
+        zoomType: 'xy'
+      },
+      title: {
+        text: 'Title'
+      },
+      subtitle: {
+        text: 'Subtitle'
+      },
+      xAxis: {
+        title: {
+          enabled: true,
+          text: 'Time'
         },
-        computed: {
+        startOnTick: true,
+        endOnTick: true,
+        showLastLabel: true
+      },
+      yAxis: {
+        title: {
+          text: 'Probability'
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 100,
+        y: 70,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+        borderWidth: 1
+      },
+      plotOptions: {
+        scatter: {
+          marker: {
+            radius: 5,
+            states: {
+              hover: {
+                enabled: true,
+                lineColor: 'rgb(100,100,100)'
+              }
+            }
+          },
+          states: {
+            hover: {
+              marker: {
+                enabled: false
+              }
+            }
+          },
+          tooltip: {
+            headerFormat: '<b>{series.name}</b><br>',
+            pointFormat: '{point.x} h, {point.y} */*'
+          }
+        }
+      },
+      series: [{
+        name: 'Pure',
+        type: 'line',
+        color: 'rgba(223, 83, 83, 0.7)',
+        data: ams.toProbGraph(pure || [])
 
-        },
-        methods: {
+      }, {
+        name: '_i_',
+        type: 'line',
+        color: 'rgba(119, 152, 191, 0.7)',
+        data: ams.toProbGraph(_i_ || [])
+      }, {
+        name: '_ii_',
+        type: 'line',
+        color: 'rgba(50, 255, 100, 0.7)',
+        data: ams.toProbGraph(_ii_ || [])
+      }]
+    });
 
-        },
-      });
 
-} catch (err) {
-  console.log('err--->', err);
-}
+//       const query = location.search.slice(1).split('&').reduce((prev, item) =>
+//         // ({ ...prev, item.split('=')[0]: item.split('=')[1] })
+//         Object.assign(prev, { [item.split('=')[0]]: +item.split('=')[1] }),
+//         {}
+//       );
+//       console.log(location.search,query);
+//
+// // !!!
+// try {
+//       const random = nAry(query.base)(query.length).random();
+//
+//       var vm = new Vue({
+//         el: '#vm',
+//         data: {
+//           base: query.base,
+//           length: query.length,
+//           zero: nAry(query.base)(query.length).zero,
+//           last: nAry(query.base)(query.length).last,
+//           random,
+//           inc: nAry(query.base)().inc(random),
+//           all: nAry(query.base)(query.length).all(),
+//           verge: nAry(query.base)(query.length).verge(),
+//           randomSet: nAry(query.base)(query.length).randomSet(5),
+//           index: nAry(query.base)().index(random),
+//           fromDecimal: nAry(query.base)(query.length).fromDecimal(7),
+//           sumOfDigits: nAry(query.base)().sumOfDigits(random),
+//           sumEquals: nAry(query.base)(query.length).sumEquals(3),
+//         },
+//         computed: {
+//
+//         },
+//         methods: {
+//
+//         },
+//       });
+//
+// } catch (err) {
+//   console.log('err---', err);
+// }
 
     </script>
   </body>
