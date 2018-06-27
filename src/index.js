@@ -3,23 +3,23 @@
  * A multiset itself is represented by ordinary JS array.
  */
 
-const sum = u => v => [...u, ...v];
-const sumEach = U => U.reduce(($, u) => sum($)(u));
+const sum = u => v => [...u, ...v]
+const sumEach = U => U.reduce(($, u) => sum($)(u))
 
-const cartesianProduct = u => v => u.reduce(($, x) => sum($)(v.map(y => [x, y])), []);
-const product = u => v => u.reduce(($, x) => sum($)(v.map(y => x + y)), []);
-const productEach = U => U.reduce(($, u) => product($)(u));
+const cartesianProduct = u => v => u.reduce(($, x) => sum($)(v.map(y => [x, y])), [])
+const product = u => v => u.reduce(($, x) => sum($)(v.map(y => x + y)), [])
+const productEach = U => U.reduce(($, u) => product($)(u))
 
-const exclude = u => x => {
-  const index = u.indexOf(x);
+const exclude = u => (x) => {
+  const index = u.indexOf(x)
   return index === -1
     ? u
-    : u.filter((_, i) => i !== index);
+    : u.filter((_, i) => i !== index)
 }
-const diff = u => v => v.reduce(($, x) => exclude($)(x), u);
-const equal = u => v => diff(u)(v).length === 0 && diff(v)(u).length === 0;
+const diff = u => v => v.reduce(($, x) => exclude($)(x), u)
+const equal = u => v => diff(u)(v).length === 0 && diff(v)(u).length === 0
 
-const sort = ([...u]) => u.sort((a, b) => a - b);
+const sort = ([...u]) => u.sort((a, b) => a - b)
 
 /**
  * Shrinking (resizing, rounding) an array of numbers to specified size
@@ -27,16 +27,15 @@ const sort = ([...u]) => u.sort((a, b) => a - b);
  * reduceByEdges :: [Number] -> Number -> [Number]
  */
 const reduceByEdges = u => (n = 2) => {
-  if (n < 2) throw new Error('Rounding the muliset to less than 2 elements');
+  if (n < 2) throw new Error('Rounding the muliset to less than 2 elements')
 
-  if (n >= u.length) return u;
+  if (n >= u.length) return u
 
   return Array(n).fill().map((_, j) => {
-    const m = u.length;
-    const K = (m - 1) * j / (n - 1);
-    // return u[Math.round(K)];
-    return (u[Math.floor(K)] + u[Math.ceil(K)]) / 2;
-  });
+    const m = u.length
+    const K = (m - 1) * j / (n - 1)
+    return (u[Math.floor(K)] + u[Math.ceil(K)]) / 2
+  })
 }
 
 const reduceByAvg = u => (n = 1) => {
@@ -91,7 +90,6 @@ const _reduceByAvg_ = u => (n = 1) => {
 const toProbGraph = u => u.map((val, i) => [val, i / (u.length - 1)])
 const toTimeGraph = u => u.map((val, i) => [i / (u.length - 1), val])
 
-/* */
 module.exports = {
   sum,
   sumEach,
@@ -106,12 +104,3 @@ module.exports = {
   toProbGraph,
   toTimeGraph,
 };
-/* */
-
-// console.log(
-// '<===========>',
-// sum([1,2])([3]),
-// sumEach([[1,2],[3]]), sumEach([['a','b'],['c','d'],['e','f','g']]),
-// product([1,2])([4,8, 16]),
-// productEach([[1,2],[4,8, 16]]), productEach([[1,2],[4,8, 16],[100]]),
-// )
