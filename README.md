@@ -6,6 +6,14 @@ These functions are regular multiset operators like multiset sum "⊎" (represen
 
 However, some functions are specific for this particular library. E.g. `product`, which has nothing to do with both intersection nor scalar multiplication. It rather corresponds to a cartesian product, but with an operation, applied on inner tuple (in this case it's a plain sum "+"). Let's call it a 'flat cartesian product'.
 
+# Installation
+
+Install the package with npm:
+
+```
+npm i -S git@github.com:tatomyr/augmented-multiset.git
+```
+
 # Functions Definition
 
 * `sum(u)(v)` - returns a multiset sum of `u` and `v` multisets provided. The result's cardinality (array length) is `|u ⊎ v| = |u| + |v|`
