@@ -30,7 +30,7 @@ The point is to simplify operations on such distributions by dealing with only t
 Install the package with npm:
 
 ```
-npm i -S git@github.com:tatomyr/discrete-uniform-distribution.git
+npm i -S git+https://git@github.com/tatomyr/discrete-uniform-distribution.git
 ```
 
 or as a link (not recommended):
