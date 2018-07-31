@@ -9,40 +9,7 @@
     </script>
   </head>
   <body>
-    <!-- <div class="wrapper">
-      <h1><a href="" class="refresh">↻</a> Home</h1>
 
-      <div id="vm" class="">
-        <form id="form">
-          base:
-          <input v-model="base" type="number" name="base" placeholder="base" value="2" min="1">
-          length:
-          <input v-model="length" type="number" name="length" placeholder="length" value="1" min="0">
-          <input type="submit" value="ok">
-        </form>
-
-        <h2 id="properties"><a href="#properties" class="hash">#</a> properties</h2>
-
-        <p class="">
-          <div class="example-desc">Zero vector:</div>
-          <div class="example">
-            nAry(<b>{{base}}</b>)(<b>{{length}}</b>).zero = <b>{{zero}}</b>
-          </div>
-        </p>
-
-
-        <h2 id="methods"><a href="#methods" class="hash">#</a> methods</h2>
-
-        <p class="">
-          <div class="example-desc">Random vector:</div>
-          <div class="example">
-            nAry(<b>{{base}}</b>)(<b>{{length}}</b>).random() = <b>{{random}}</b>
-          </div>
-        </p>
-
-
-      </div>
-    </div> -->
 
     <div id="chart-container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
 
@@ -145,47 +112,6 @@
         data: ams.toProbGraph(_ii_ || [])
       }]
     });
-
-
-//       const query = location.search.slice(1).split('&').reduce((prev, item) =>
-//         // ({ ...prev, item.split('=')[0]: item.split('=')[1] })
-//         Object.assign(prev, { [item.split('=')[0]]: +item.split('=')[1] }),
-//         {}
-//       );
-//       console.log(location.search,query);
-//
-// // !!!
-// try {
-//       const random = nAry(query.base)(query.length).random();
-//
-//       var vm = new Vue({
-//         el: '#vm',
-//         data: {
-//           base: query.base,
-//           length: query.length,
-//           zero: nAry(query.base)(query.length).zero,
-//           last: nAry(query.base)(query.length).last,
-//           random,
-//           inc: nAry(query.base)().inc(random),
-//           all: nAry(query.base)(query.length).all(),
-//           verge: nAry(query.base)(query.length).verge(),
-//           randomSet: nAry(query.base)(query.length).randomSet(5),
-//           index: nAry(query.base)().index(random),
-//           fromDecimal: nAry(query.base)(query.length).fromDecimal(7),
-//           sumOfDigits: nAry(query.base)().sumOfDigits(random),
-//           sumEquals: nAry(query.base)(query.length).sumEquals(3),
-//         },
-//         computed: {
-//
-//         },
-//         methods: {
-//
-//         },
-//       });
-//
-// } catch (err) {
-//   console.log('err---', err);
-// }
 
     </script>
   </body>
