@@ -1,7 +1,7 @@
 # Discrete Uniform Distribution
 
-Each discrete uniform distribution could be represented as a multiset of numbers which in JavaScript is a regular array.
-[Probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function) can be easily derived from an array in a such manner:
+Each [discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution) could be represented as a [multiset](https://en.wikipedia.org/wiki/Multiset) of numbers which in JavaScript is a regular array.
+[Probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function) can be easily derived from an array in such manner:
 
 ```
 let u = {u[i] | i ∈ [1, m]}
@@ -9,7 +9,7 @@ p_u(t) = | 1 / m, t ∈ u
          | 0 otherwise
 ```
 
-where p_u(t) - probability of randomly taken value that belogs to space of `u` to be equal to `t`.
+where `p_u(t)` - a probability of randomly taken value that belongs to space of `u` to be equal to `t`.
 
 Please note that sake of convenience in the description we start with index 1, not 0.
 
@@ -32,3 +32,16 @@ Install the package with npm:
 ```
 npm i -S git@github.com:tatomyr/discrete-uniform-distribution.git
 ```
+
+or as a link (not recommended):
+
+```
+<script src="https://raw.githubusercontent.com/tatomyr/discrete-uniform-distribution/master/lib/index.babel.js"></script>
+```
+
+# Contribution
+
+Use node.js version 8.*.*.
+Clone the repository and `cd discrete-uniform-distribution`.
+Install all dependencies with `npm i`.
+Follow ESLint rules.
