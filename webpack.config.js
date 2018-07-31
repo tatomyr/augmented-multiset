@@ -1,5 +1,5 @@
-var webpack = require('webpack');
-var path = require('path');
+var webpack = require('webpack')
+var path = require('path')
 
 module.exports = {
   entry: './src/index.js',
@@ -13,10 +13,10 @@ module.exports = {
     // a name of imported module.
     library: 'ams',
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
   },
   devServer: {
-    contentBase: __dirname
+    contentBase: __dirname,
   },
   module: {
     rules: [
@@ -25,9 +25,9 @@ module.exports = {
         exclude: /node_modules/,
         use: [{
           loader: 'babel-loader',
-          options: { presets: ['es2015'] }
-        }]
+          options: { presets: ['env'] },
+        }],
       },
-    ]
-  }
-};
+    ],
+  },
+}
